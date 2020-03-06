@@ -105,7 +105,7 @@ var sumBelow = function(n) {
         if(n===1 || n=== 0){
             return 0;
         }
-        // If a negative number, other directino.
+        // If a negative number, other directi.
 
         else if(n<0){
           return (n+1) + sumBelow (n+1);
@@ -119,33 +119,65 @@ var sumBelow = function(n) {
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
 
-    // Base case, let's end it here if we can.
-    if(n===1 || n=== 0){
-        return 0;
-    }
-    // If a negative number, other direction.
+var newArray = [];
+// Start at beginning integer
+// Push into newArray
+// Increment, if pos = y, return 1
 
-    else if(n<0){
-      return (n+1) + sumBelow (n+1);
-    }
+// Should return empty array if no integers in range
+if (typeof(x) != 'number' || typeof(y) != 'number'){
+    return [];
+}
 
-    // Return if we are still on this path.
-    return (n-1) + sumBelow(n-1);
+// If we have an empty array
+// If we are at the last number in range
+if (x+1 === y || y+1 === x || x === y){
+    return [];
+}
+
+// If we have negative integers or y < x
+if (y < x) {
+    newArray.push(x-1);
+    return newArray.concat(range(x-1,y));
+}
+else {
+    newArray.push(x+1);
+    return newArray.concat(range(x+1,y));
+}
 };
 
+console.log(range(-7,-9));
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
 // 8^2 = 8 x 8 = 64. Here, 8 is the base and 2 is the exponent.
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
-};
+
+// Multiply base and run this exp times
+
+if (exp === 0){
+    return 1;
+}
+
+if (exp > 0 ){
+return base * exponent(base, exp-1);
+}
+
+if (exp < 0){
+return exponent(base, exp+1)/base;
+}
+
+}
+
 
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+
+    
 };
 
 // 9. Write a function that reverses a string.
