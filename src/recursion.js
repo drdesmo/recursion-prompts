@@ -177,17 +177,70 @@ return exponent(base, exp+1)/base;
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
 
-    
+    // Base case: if input = 1, it's a power of two.
+    // Otherwise, repeatedly divide by 2 - if we end up at 1, it's a power of two, so return TRUE
+    // If not, return false
+
+if (n === 1){
+    return true;
+}
+
+if (n < 1){
+    return false;
+}
+
+return powerOfTwo(n/2);
+
 };
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
 
+// Base case: string is empty
+
+if (string === "") {
+    return "";
+}
+
+else {
+    return reverse(string.substring(1)) + string.charAt(0);
+}
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
-};
+
+    // Remove formatting (CAPS + MiXeD CaSe)
+    string = string.replace(' ', '');
+    string = string.toLowerCase();
+    
+    // Test if single letter
+    
+    if (string.length <= 1){
+      return true;
+    }
+    
+    // Test first === last outside > inside of string
+    
+    var first = string[0];
+    var last = string[string.length -1];
+    
+    if (first === last){
+    
+    // Test inside rest of it
+    
+    var testString = string.substring(1, string.length-1);
+    console.log('Test string - ' + testString);
+    console.log('String - ' + string);
+    return palindrome(testString);
+    
+    }
+    
+    else {
+      return false;
+    }
+    };
+    
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
